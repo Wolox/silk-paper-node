@@ -1,5 +1,5 @@
 {
-  "name": "silk-paper",
+  "name": "@wolox/silk-paper",
   "version": "1.0.0",
   "description": "Generate REST Documentation based on the OpenApi specification",
   "main": "index.js",
