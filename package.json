@@ -1,0 +1,43 @@
+{
+  "name": "silk-paper",
+  "version": "1.0.0",
+  "description": "Generate REST Documentation based on the OpenApi specification",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "eslint-check": "eslint --print-config .eslintrc.js --ignore-pattern ./.eslintrc.js | eslint-config-prettier-check",
+    "lint": "eslint \"**/*.js\" --ignore-pattern ./.eslintrc.js",
+    "lint-diff": "git diff --name-only --cached --relative | grep \\\\.js$ | xargs eslint",
+    "lint-fix": "eslint \"**/*.js\" --fix --ignore-pattern ./.eslintrc.js",
+    "precommit": "npm run lint"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dbenavidesv/silk-paper.git"
+  },
+  "keywords": [
+    "docs",
+    "silk",
+    "paper",
+    "rest"
+  ],
+  "author": "Wolox",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dbenavidesv/silk-paper/issues"
+  },
+  "homepage": "https://github.com/dbenavidesv/silk-paper#readme",
+  "dependencies": {
+    "lodash": "^4.17.15"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.10.0",
+    "eslint-config-wolox": "^4.0.0",
+    "eslint-config-wolox-node": "^3.0.0",
+    "eslint-plugin-import": "^2.20.1",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "prettier-eslint": "^9.0.1"
+  }
+}
