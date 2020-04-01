@@ -1,6 +1,87 @@
-# silk-paper
-Package for the automatic generation of REST documentation based on the OpenApi specification. Key name: Silk
+# silk-paper-node
+Package for the automatic generation of REST documentation based on the OpenApi specification.
+
+## Installing
+Install with `npm install silk-paper-node`.
+
+## Usage
+* In `app.js`:
+We are using [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package for render the documentation, so first you have to install it.
+```
+const swaggerUi = require('swagger-ui-express');
+const silkPaper = require('silk-paper');
+
+app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs()));
+``` 
+
+* In `test_file.js`:
+```
+const server = require('./app.js');     //This is an server instance.
+const SilkPaper = require('silk-paper');
+const docs = new SilkPaper(server, {});
+``` 
+
+And in the test case that we want to document adding the following sentence:
+```
+docs.genDocs(request, {});
+```
+
+### Supported extensions: 
+This should be added as option in the constructor and the package accepts two kind of type files:
+* .json
+* .yml
+
+### Options
+* For constructor:
+``` 
+{
+  docsDir: 'custom documentatio path',
+  fileType: 'json',
+  openApiVersion: '3.0.0'
+}
+```
+* For `genDocs` function:
+``` 
+{
+  description: 'endponit description'
+}
+```
+
+## Contributing
+
+1. Fork it
+2. Create your feature branch (`git checkout -b my-new-feature`)
+3. Run the tests (`npm test`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
+
+## About
+
+This project is maintained by [Wolox](https://github.com/wolox) and it was written by [Wolox](http://www.wolox.com.ar).
+
+![Wolox](https://raw.githubusercontent.com/Wolox/press-kit/master/logos/logo_banner.png)
 
 ## License
 
-**silk-paper** is available under the MIT [license](LICENSE.md).
+**silk-paper-node** is available under the MIT [license](LICENSE.md).
+
+    Copyright (c) 2020 Wolox
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in
+    all copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+    THE SOFTWARE.
