@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dbenavidesv/silk-paper.git"
+    "url": "git+https://github.com/Wolox/silk-paper.git"
   },
   "keywords": [
     "docs",
@@ -24,9 +24,9 @@
   "author": "Wolox",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/dbenavidesv/silk-paper/issues"
+    "url": "https://github.com/Wolox/silk-paper/issues"
   },
-  "homepage": "https://github.com/dbenavidesv/silk-paper#readme",
+  "homepage": "https://github.com/Wolox/silk-paper#readme",
   "dependencies": {
     "lodash": "^4.17.15"
   },

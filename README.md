@@ -2,14 +2,14 @@
 Package for the automatic generation of REST documentation based on the OpenApi specification.
 
 ## Installing
-Install with `npm install silk-paper-node`.
+Install with `npm i @wolox/silk-paper`.
 
 ## Usage
 * In `app.js`:
 We are using [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package for render the documentation, so first you have to install it.
 ```
 const swaggerUi = require('swagger-ui-express');
-const silkPaper = require('silk-paper');
+const silkPaper = require('@wolox/silk-paper');
 
 app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs()));
 ``` 
@@ -17,7 +17,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs()));
 * In `test_file.js`:
 ```
 const server = require('./app.js');     //This is a server instance.
-const SilkPaper = require('silk-paper');
+const SilkPaper = require('@wolox/silk-paper');
 const docs = new SilkPaper(server, {});
 ``` 
 
