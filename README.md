@@ -5,55 +5,71 @@ Package for the automatic generation of REST documentation based on the OpenApi 
 Install with `npm i @wolox/silk-paper`.
 
 ## Usage
-* In `app.js`:
-We are using [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package for render the documentation, so first you have to install it.
-```
-const swaggerUi = require('swagger-ui-express');
-const silkPaper = require('@wolox/silk-paper');
+* Initialize silk-paper:
+  ```
+  const server = require(‘./app.js’);     // This is a server instance.
+  const SilkPaper = require(‘@wolox/silk-paper’);
+  const docs = new SilkPaper(server, { docsDir: ‘docs’ });
+  ```
+  When SilkPaper is initialized, the inital documentation files are created in the chosen folder (‘docs’), based on what’s in the `server`. The created class can be exported to where you want to generate documentation. To do this, add the following sentence in a use case (e.g. in testing) that you want to document, passing the HTTP response object:
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs()));
-``` 
+  ```
+  docs.genDocs(response, { description: ‘Testing example/endpoint’ });
+  ```
 
-* In `test_file.js`:
-```
-const server = require('./app.js');     //This is a server instance.
-const SilkPaper = require('@wolox/silk-paper');
-const docs = new SilkPaper(server, {});
-``` 
+* Having the generated documentation, the static method `buildDocs()` can be used to get the entire OpenApi specification object, which can be utilized in multiples ways.
 
-And in the test case that we want to document adding the following sentence:
-```
-docs.genDocs(request, {});
-```
+  e.g. In the server file the [`swagger-ui-express`](https://www.npmjs.com/package/swagger-ui-express) package can be used to render the documentation.
+  ```
+  const swaggerUi = require('swagger-ui-express');
+  const silkPaper = require('@wolox/silk-paper');
+
+  app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs({ docsDir: 'docs' })));
+  ``` 
 
 ### Supported extensions: 
 This should be added as option in the constructor and the package accepts two kind of type files:
 * .json
-* .yml
+* .yml (coming soon)
 
 ### Options
-* For constructor:
-``` 
-{
-  docsDir: 'custom documentatio path',
-  fileType: 'json',
-  openApiVersion: '3.0.0'
-}
-```
-* For `genDocs` function:
-``` 
-{
-  description: 'endponit description'
-}
-```
+* For the ***silk-paper*** constructor:
+  ``` 
+  const options = {
+    docsDir: 'custom/path',     // Default value: 'docs'
+    fileType: 'json',           // Default value: 'json'
+    openApiVersion: '*.*.*'     // Default value: '3.0.0'
+  }
+
+  new SilkPaper(server, options);
+  ```
+* For the `genDocs` function:
+  ``` 
+  const options = {
+  description: 'endpoint description'       // Default value: `${method} ${path}`
+  }
+
+  docs.genDocs(response, options);
+  ```
+
+* For the `buildDocs` function: 
+  ```
+  const options = {
+  docsDir: 'custom/path',     // Default value: 'docs'
+  fileType: 'json',           // Default value: 'json'
+  }
+
+  silkPaper.buildDocs(options)
+  ```
 
 ## Contributing
 
 1. Fork it
 2. Create your feature branch (`git checkout -b my-new-feature`)
-3. Commit your changes (`git commit -am 'Add some feature'`)
-4. Push to the branch (`git push origin my-new-feature`)
-5. Create new Pull Request
+3. Run the tests (`npm test`)
+4. Commit your changes (`git commit -am 'Add some feature'`)
+5. Push to the branch (`git push origin my-new-feature`)
+6. Create new Pull Request
 
 ## About
 
