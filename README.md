@@ -16,7 +16,7 @@ app.use('/docs', swaggerUi.serve, swaggerUi.setup(silkPaper.buildDocs()));
 
 * In `test_file.js`:
 ```
-const server = require('./app.js');     //This is an server instance.
+const server = require('./app.js');     //This is a server instance.
 const SilkPaper = require('silk-paper');
 const docs = new SilkPaper(server, {});
 ``` 
